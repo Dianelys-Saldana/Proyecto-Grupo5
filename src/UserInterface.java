@@ -7,6 +7,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class UserInterface extends JFrame {
 
@@ -50,6 +52,13 @@ public class UserInterface extends JFrame {
 		contentPane.add(btnNewButton_1);
 		
 		JButton btnNewButton_2 = new JButton("Generate Plane");
+		btnNewButton_2.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				Gui window = new Gui();
+				window.cp.setVisible(true);
+			}
+		});
 		btnNewButton_2.setBounds(359, 338, 125, 23);
 		contentPane.add(btnNewButton_2);
 		
