@@ -1,20 +1,22 @@
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
-import javax.swing.JButton;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import javax.swing.JSplitPane;
+import javax.swing.JLabel;
+import java.awt.Panel;
+import java.awt.Label;
+import java.awt.Button;
+import java.awt.Color;
+import javax.swing.JButton;
+import javax.swing.SwingConstants;
 
 public class UserInterface extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField txtHg;
-	private JTextField textField_1;
 
 	/**
 	 * Launch the application.
@@ -37,60 +39,25 @@ public class UserInterface extends JFrame {
 	 */
 	public UserInterface() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(450, 100, 500, 400);
+		setBounds(100, 100, 800, 600);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JButton btnNewButton = new JButton("Close  Plane");
-		btnNewButton.setBounds(0, 0, 105, 23);
-		contentPane.add(btnNewButton);
+		JButton x = new JButton("x");
+		x.setBounds(25, 75, 50, 50);
+		contentPane.add(x);
 		
-		JButton btnNewButton_1 = new JButton("Clear Plane");
-		btnNewButton_1.setBounds(387, 0, 105, 23);
-		contentPane.add(btnNewButton_1);
+		JButton y = new JButton("y");
+		y.setBounds(85, 75, 50, 50);
+		contentPane.add(y);
 		
-		JButton btnNewButton_2 = new JButton("Generate Plane");
-		btnNewButton_2.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent arg0) {
-				Gui window = new Gui();
-				window.cp.setVisible(true);
-			}
-		});
-		btnNewButton_2.setBounds(359, 338, 125, 23);
-		contentPane.add(btnNewButton_2);
+		JLabel background;
+		ImageIcon img = new ImageIcon("/Users/dianelys.saldana/eclipse-workspace/Intro/Proyecto-Grupo5/src/Background.png");
+		background = new JLabel("", img, JLabel.CENTER);
+		background.setBounds(0,0,800,600);
+		getContentPane().add(background);
 		
-		txtHg = new JTextField();
-		txtHg.setBounds(112, 79, 86, 20);
-		contentPane.add(txtHg);
-		txtHg.setColumns(10);
-		
-		textField_1 = new JTextField();
-		textField_1.setBounds(282, 79, 86, 20);
-		contentPane.add(textField_1);
-		textField_1.setColumns(10);
-		
-		JButton btnNewButton_3 = new JButton("Cartesian Coordinates");
-		btnNewButton_3.setBounds(156, 129, 162, 23);
-		contentPane.add(btnNewButton_3);
-		
-		JButton btnNewButton_4 = new JButton("Polar Coordenates");
-		btnNewButton_4.setBounds(169, 179, 140, 23);
-		contentPane.add(btnNewButton_4);
-		
-		JButton btnNewButton_5 = new JButton("Return to Origine");
-		btnNewButton_5.setBounds(175, 233, 130, 23);
-		contentPane.add(btnNewButton_5);
-		
-		JLabel lblNewLabel = new JLabel("x Coordinate");
-		lblNewLabel.setBounds(117, 54, 105, 14);
-		contentPane.add(lblNewLabel);
-		
-		JLabel lblNewLabel_1 = new JLabel("y Coordinate");
-		lblNewLabel_1.setBounds(288, 54, 105, 14);
-		contentPane.add(lblNewLabel_1);
 	}
-
 }
