@@ -1,5 +1,6 @@
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import java.awt.Image;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -54,9 +55,10 @@ public class UserInterface extends JFrame {
 		contentPane.add(y);
 		
 		JLabel background;
-		ImageIcon img = new ImageIcon("/Users/dianelys.saldana/eclipse-workspace/Intro/Proyecto-Grupo5/src/Background.png");
-		background = new JLabel("", img, JLabel.CENTER);
-		background.setBounds(0,0,800,600);
+		Image img = new ImageIcon(this.getClass().getResource("/Background-cc.png")).getImage();
+		background = new JLabel("", JLabel.CENTER);
+		background.setIcon(new ImageIcon(img));
+		background.setBounds(0, 0, 800, 600);
 		getContentPane().add(background);
 		
 	}
