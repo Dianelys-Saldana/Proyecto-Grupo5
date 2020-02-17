@@ -25,8 +25,10 @@ import javax.swing.DropMode;
 public class UserInterface extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField txtx;
-	private JTextField txtY;
+	private JTextField xButton;
+	private JTextField yButton;
+	private JTextField rButton;
+	private JTextField angleButton;
 
 	/**
 	 * Launch the application.
@@ -53,46 +55,58 @@ public class UserInterface extends JFrame {
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
-		contentPane.setLayout(null);
+		contentPane.setLayout(null);	
 		
-//		JLabel backgroundCC;
-//		Image img = new ImageIcon(this.getClass().getResource("/Background-cc.png")).getImage();
-//		backgroundCC = new JLabel("", JLabel.CENTER);
-//		backgroundCC.setIcon(new ImageIcon(img));
-//		backgroundCC.setBounds(0, 0, 800, 600);
-//		getContentPane().add(backgroundCC);
+		xButton = new JTextField();
+		xButton.setText("  x");
+		xButton.setBounds(30, 90, 35, 35);
+		contentPane.add(xButton);
+		xButton.setColumns(10);
 		
+		yButton = new JTextField();
+		yButton.setText("  y");
+		yButton.setColumns(10);
+		yButton.setBounds(75, 90, 35, 35);
+		contentPane.add(yButton);
 		
-		txtx = new JTextField();
-		txtx.setText("X");
-		txtx.setBounds(0, 10, 51, 32);
-		contentPane.add(txtx);
-		txtx.setColumns(10);
+		rButton = new JTextField();
+		rButton.setText("  r");
+		rButton.setColumns(10);
+		rButton.setBounds(30, 135, 35, 35);
+		contentPane.add(rButton);
 		
-		txtY = new JTextField();
-		txtY.setText("Y");
-		txtY.setBounds(109, 10, 51, 32);
-		contentPane.add(txtY);
-		txtY.setColumns(10);
+		angleButton = new JTextField();
+		angleButton.setText("  θ");
+		angleButton.setColumns(10);
+		angleButton.setBounds(75, 135, 35, 35);
+		contentPane.add(angleButton);
 		
-		JRadioButton rdbtnPolarPlane = new JRadioButton("Polar Plane");
-		rdbtnPolarPlane.setBounds(0, 153, 201, 35);
-		contentPane.add(rdbtnPolarPlane);
+		JButton btnGraph = new JButton("Graph");
+		btnGraph.setBounds(33, 175, 75, 35);
+		contentPane.add(btnGraph);
 		
-		JRadioButton rdbtnCartesianPlane = new JRadioButton("Cartesian Plane");
-		rdbtnCartesianPlane.setBounds(0, 201, 201, 35);
-		contentPane.add(rdbtnCartesianPlane);
+		JRadioButton polarPlane = new JRadioButton("Polar Plane");
+		polarPlane.setBounds(25, 275, 200, 35);
+		contentPane.add(polarPlane);
 		
-		JLabel backgroundCP;
-		Image img2 = new ImageIcon(this.getClass().getResource("/Background-cp.png")).getImage();
+		JRadioButton cartesianPlane = new JRadioButton("Cartesian Plane");
+		cartesianPlane.setBounds(25, 315, 200, 35);
+		contentPane.add(cartesianPlane);
 		
-		JButton btnGraphic = new JButton("Graphic");
-		btnGraphic.setBounds(21, 58, 141, 35);
-		contentPane.add(btnGraphic);
-		backgroundCP = new JLabel("", JLabel.CENTER);
-		backgroundCP.setIcon(new ImageIcon(img2));
-		backgroundCP.setBounds(0, 0, 800, 600);
-		getContentPane().add(backgroundCP);
+//		JLabel backgroundCP;
+//		Image img2 = new ImageIcon(this.getClass().getResource("/Background-cp.png")).getImage();
+//		backgroundCP = new JLabel("", JLabel.CENTER);
+//		backgroundCP.setIcon(new ImageIcon(img2));
+//		backgroundCP.setBounds(0, 0, 800, 600);
+//		getContentPane().add(backgroundCP);
+		
+		JLabel backgroundCC;
+		Image img = new ImageIcon(this.getClass().getResource("/Background-cc.png")).getImage();
+		backgroundCC = new JLabel("", JLabel.CENTER);
+		backgroundCC.setIcon(new ImageIcon(img));
+		backgroundCC.setBounds(0, 0, 800, 600);
+		getContentPane().add(backgroundCC);
+		
 		
 	
 	}
