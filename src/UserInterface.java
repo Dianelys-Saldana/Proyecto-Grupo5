@@ -54,12 +54,12 @@ public class UserInterface extends JFrame {
 		y.setBounds(85, 75, 50, 50);
 		contentPane.add(y);
 		
-		JLabel backgroundCC;
-		Image img = new ImageIcon(this.getClass().getResource("/Background-cc.png")).getImage();
-		backgroundCC = new JLabel("", JLabel.CENTER);
-		backgroundCC.setIcon(new ImageIcon(img));
-		backgroundCC.setBounds(0, 0, 800, 600);
-		getContentPane().add(backgroundCC);
+//		JLabel backgroundCC;
+//		Image img = new ImageIcon(this.getClass().getResource("/Background-cc.png")).getImage();
+//		backgroundCC = new JLabel("", JLabel.CENTER);
+//		backgroundCC.setIcon(new ImageIcon(img));
+//		backgroundCC.setBounds(0, 0, 800, 600);
+//		getContentPane().add(backgroundCC);
 		
 		JLabel backgroundCP;
 		Image img2 = new ImageIcon(this.getClass().getResource("/Background-cp.png")).getImage();
