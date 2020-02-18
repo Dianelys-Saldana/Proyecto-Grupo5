@@ -29,6 +29,12 @@ public class UserInterface extends JFrame {
 	private JTextField yButton;
 	private JTextField rButton;
 	private JTextField angleButton;
+	private JLabel lblX;
+	private JLabel lblY;
+	private JLabel lblR;
+	private JLabel label_1;
+	private JButton btnReset;
+	private JButton btnReturnToOrigine;
 
 	/**
 	 * Launch the application.
@@ -58,39 +64,43 @@ public class UserInterface extends JFrame {
 		contentPane.setLayout(null);	
 		
 		xButton = new JTextField();
-		xButton.setText("  x");
-		xButton.setBounds(30, 90, 35, 35);
+		xButton.setBounds(37, 42, 55, 35);
 		contentPane.add(xButton);
 		xButton.setColumns(10);
 		
 		yButton = new JTextField();
-		yButton.setText("  y");
 		yButton.setColumns(10);
-		yButton.setBounds(75, 90, 35, 35);
+		yButton.setBounds(133, 42, 55, 35);
 		contentPane.add(yButton);
 		
 		rButton = new JTextField();
-		rButton.setText("  r");
 		rButton.setColumns(10);
-		rButton.setBounds(30, 135, 35, 35);
+		rButton.setBounds(37, 98, 55, 35);
 		contentPane.add(rButton);
 		
 		angleButton = new JTextField();
-		angleButton.setText("  θ");
 		angleButton.setColumns(10);
-		angleButton.setBounds(75, 135, 35, 35);
+		angleButton.setBounds(133, 98, 55, 35);
 		contentPane.add(angleButton);
 		
 		JButton btnGraph = new JButton("Graph");
-		btnGraph.setBounds(33, 175, 75, 35);
+		btnGraph.setBounds(25, 165, 75, 35);
 		contentPane.add(btnGraph);
 		
+		btnReset = new JButton("Reset");
+		btnReset.setBounds(124, 165, 75, 35);
+		contentPane.add(btnReset);
+		
+		btnReturnToOrigine = new JButton("Return to origin");
+		btnReturnToOrigine.setBounds(45, 220, 132, 35);
+		contentPane.add(btnReturnToOrigine);
+		
 		JRadioButton polarPlane = new JRadioButton("Polar Plane");
-		polarPlane.setBounds(25, 275, 200, 35);
+		polarPlane.setBounds(47, 268, 159, 35);
 		contentPane.add(polarPlane);
 		
 		JRadioButton cartesianPlane = new JRadioButton("Cartesian Plane");
-		cartesianPlane.setBounds(25, 315, 200, 35);
+		cartesianPlane.setBounds(47, 306, 159, 35);
 		contentPane.add(cartesianPlane);
 		
 //		JLabel backgroundCP;
@@ -102,6 +112,22 @@ public class UserInterface extends JFrame {
 		
 		JLabel backgroundCC;
 		Image img = new ImageIcon(this.getClass().getResource("/Background-cc.png")).getImage();
+		
+		lblX = new JLabel("x: ");
+		lblX.setBounds(22, 42, 56, 35);
+		contentPane.add(lblX);
+		
+		lblY = new JLabel("y:");
+		lblY.setBounds(120, 42, 56, 35);
+		contentPane.add(lblY);
+		
+		lblR = new JLabel("r:");
+		lblR.setBounds(25, 98, 56, 35);
+		contentPane.add(lblR);
+		
+		label_1 = new JLabel("\u00CE\u00B8:");
+		label_1.setBounds(120, 98, 56, 35);
+		contentPane.add(label_1);
 		backgroundCC = new JLabel("", JLabel.CENTER);
 		backgroundCC.setIcon(new ImageIcon(img));
 		backgroundCC.setBounds(0, 0, 800, 600);
