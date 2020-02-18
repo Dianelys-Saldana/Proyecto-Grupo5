@@ -25,8 +25,11 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import javax.swing.JEditorPane;
+import javax.imageio.ImageIO;
 import javax.swing.DropMode;
 import java.awt.event.ActionListener;
+import java.awt.image.ImageObserver;
+import java.io.IOException;
 import java.awt.event.ActionEvent;
 
 public class UserInterface extends JFrame {
@@ -65,6 +68,12 @@ public class UserInterface extends JFrame {
 	public void paint(Graphics g) {
 		// Circular Surface
 		super.paint(g);
+		try {
+			drawPlane(g,this);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		for (int i = 0; i < x.size(); i++) {
 			this.drawCircleByCenter(g, x.get(i), y.get(i));
 		}
@@ -72,7 +81,10 @@ public class UserInterface extends JFrame {
 			g.drawLine(x.get(i), y.get(i), x.get(i - 1), y.get(i - 1));
 		}
 	}
-
+	void drawPlane(Graphics g, ImageObserver observer) throws IOException {
+		Image img =  ImageIO.read(this.getClass().getResource("/Cartesian.png"));
+		g.drawImage(img,256,0,observer);
+	}
 	void drawCircleByCenter(Graphics g, int x, int y) {
 		g.drawOval(x, y, 5, 5);
 		g.fillOval(x, y, 5, 5);
@@ -80,8 +92,9 @@ public class UserInterface extends JFrame {
 
 	/**
 	 * Create the frame.
+	 * @throws IOException 
 	 */
-	public UserInterface() {
+	public UserInterface() throws IOException {
 		x.add(523);
 		y.add(342);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -149,7 +162,7 @@ public class UserInterface extends JFrame {
 		// getContentPane().add(backgroundCP);
 
 		JLabel backgroundCC;
-		Image img = new ImageIcon(this.getClass().getResource("/Background-cc.png")).getImage();
+		Image img =  ImageIO.read(this.getClass().getResource("/Background-bar.png"));
 
 		lblX = new JLabel("x: ");
 		lblX.setBounds(22, 42, 56, 35);
@@ -163,12 +176,12 @@ public class UserInterface extends JFrame {
 		lblR.setBounds(25, 98, 56, 35);
 		contentPane.add(lblR);
 
-		label_1 = new JLabel("θ:");
+		label_1 = new JLabel("\u00CE\u00B8:");
 		label_1.setBounds(120, 98, 56, 35);
 		contentPane.add(label_1);
 		backgroundCC = new JLabel("", JLabel.CENTER);
 		backgroundCC.setIcon(new ImageIcon(img));
-		backgroundCC.setBounds(0, 0, 800, 600);
-		getContentPane().add(backgroundCC);
+		backgroundCC.setBounds(0, 0, 256, 600);
+	//	getContentPane().add(backgroundCC);
 	}
 }
