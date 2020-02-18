@@ -163,7 +163,7 @@ public class UserInterface extends JFrame {
 		lblR.setBounds(25, 98, 56, 35);
 		contentPane.add(lblR);
 
-		label_1 = new JLabel("\u00CE\u00B8:");
+		label_1 = new JLabel("θ:");
 		label_1.setBounds(120, 98, 56, 35);
 		contentPane.add(label_1);
 		backgroundCC = new JLabel("", JLabel.CENTER);
