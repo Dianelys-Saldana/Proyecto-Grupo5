@@ -26,6 +26,7 @@ import java.util.Random;
 
 import javax.swing.JEditorPane;
 import javax.imageio.ImageIO;
+import javax.swing.ButtonGroup;
 import javax.swing.DropMode;
 import java.awt.event.ActionListener;
 import java.awt.image.ImageObserver;
@@ -45,6 +46,7 @@ public class UserInterface extends JFrame {
 	private JLabel label_1;
 	private JButton btnReset;
 	private JButton btnReturnToOrigine;
+	private Image img;
 
 	ArrayList<Integer> x = new ArrayList<Integer>();
 	ArrayList<Integer> y = new ArrayList<Integer>();
@@ -82,7 +84,6 @@ public class UserInterface extends JFrame {
 		}
 	}
 	void drawPlane(Graphics g, ImageObserver observer) throws IOException {
-		Image img =  ImageIO.read(this.getClass().getResource("/Cartesian.png"));
 		g.drawImage(img,256,0,observer);
 	}
 	void drawCircleByCenter(Graphics g, int x, int y) {
@@ -144,15 +145,44 @@ public class UserInterface extends JFrame {
 		btnReturnToOrigine = new JButton("Return to origin");
 		btnReturnToOrigine.setBounds(45, 220, 132, 35);
 		contentPane.add(btnReturnToOrigine);
-
+		
 		JRadioButton polarPlane = new JRadioButton("Polar Plane");
+		polarPlane.setSelected(true);
+		polarPlane.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				try {
+					img =  ImageIO.read(this.getClass().getResource("/Polar.png"));
+					repaint();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		});
+		if(polarPlane.isEnabled()) {
+			img =  ImageIO.read(this.getClass().getResource("/Polar.png"));
+			repaint();
+		}
 		polarPlane.setBounds(47, 268, 159, 35);
 		contentPane.add(polarPlane);
 
 		JRadioButton cartesianPlane = new JRadioButton("Cartesian Plane");
+		cartesianPlane.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				try {
+					img =  ImageIO.read(this.getClass().getResource("/Cartesian.png"));
+					repaint();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		});
 		cartesianPlane.setBounds(47, 306, 159, 35);
 		contentPane.add(cartesianPlane);
-
+		ButtonGroup radioButtons = new ButtonGroup();
+		radioButtons.add(cartesianPlane);
+		radioButtons.add(polarPlane);
 		// JLabel backgroundCP;
 		// Image img2 = new
 		// ImageIcon(this.getClass().getResource("/Background-cp.png")).getImage();
@@ -175,6 +205,7 @@ public class UserInterface extends JFrame {
 		lblR = new JLabel("r:");
 		lblR.setBounds(25, 98, 56, 35);
 		contentPane.add(lblR);
+		
 
 		label_1 = new JLabel("\u00CE\u00B8:");
 		label_1.setBounds(120, 98, 56, 35);
@@ -182,6 +213,6 @@ public class UserInterface extends JFrame {
 		backgroundCC = new JLabel("", JLabel.CENTER);
 		backgroundCC.setIcon(new ImageIcon(img));
 		backgroundCC.setBounds(0, 0, 256, 600);
-	//	getContentPane().add(backgroundCC);
+		getContentPane().add(backgroundCC);
 	}
 }
