@@ -50,7 +50,7 @@ public class UserInterface extends JFrame {
 
 	ArrayList<Integer> x = new ArrayList<Integer>();
 	ArrayList<Integer> y = new ArrayList<Integer>();
-
+	
 	
 	/**
 	 * Launch the application.
@@ -68,6 +68,7 @@ public class UserInterface extends JFrame {
 		});
 	}
 
+	// Draw lines and circles
 	public void paint(Graphics g) {
 		// Circular Surface
 		super.paint(g);
@@ -76,14 +77,13 @@ public class UserInterface extends JFrame {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		for (int i = 0; i < x.size(); i++) {
-			this.drawCircleByCenter(g, 530, 280); //x.get(i), y.get(i));
-		}
+		
+		// Draw coordinate
+		this.drawCircleByCenter(g, 525, 300); 
+		
+		// Draw line
 		for (int i = x.size() - 1; i > 0; i--) {
-			// x debe ser > 255, y > 20, 
-			if(x.get(i) >= 255 && y.get(i) <= 600) {
-//				x.clear();
-//				y.clear();
+			if(x.get(i) >= 255 && y.get(i) <= 600) { // Check
 				g.drawLine(x.get(i), y.get(i), 530, 280);
 				this.drawCircleByCenter(g, x.get(i), y.get(i));
 			}
