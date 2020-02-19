@@ -43,14 +43,15 @@ public class UserInterface extends JFrame {
 	private JLabel lblX;
 	private JLabel lblY;
 	private JLabel lblR;
-	private JLabel label_1;
+	private JLabel lblA;
 	private JButton btnReset;
-	private JButton btnReturnToOrigine;
+	private JButton btnReturnToOrigin;
 	private Image img;
 
 	ArrayList<Integer> x = new ArrayList<Integer>();
 	ArrayList<Integer> y = new ArrayList<Integer>();
 
+	
 	/**
 	 * Launch the application.
 	 */
@@ -73,14 +74,13 @@ public class UserInterface extends JFrame {
 		try {
 			drawPlane(g,this);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		for (int i = 0; i < x.size(); i++) {
-			this.drawCircleByCenter(g, x.get(i), y.get(i));
+			this.drawCircleByCenter(g, 530, 280); //x.get(i), y.get(i));
 		}
 		for (int i = x.size() - 1; i > 0; i--) {
-			g.drawLine(x.get(i), y.get(i), x.get(i - 1), y.get(i - 1));
+			g.drawLine(x.get(i), y.get(i), 530, 280);
 		}
 	}
 	void drawPlane(Graphics g, ImageObserver observer) throws IOException {
@@ -90,7 +90,7 @@ public class UserInterface extends JFrame {
 		g.drawOval(x, y, 5, 5);
 		g.fillOval(x, y, 5, 5);
 	}
-
+	
 	/**
 	 * Create the frame.
 	 * @throws IOException 
@@ -104,7 +104,8 @@ public class UserInterface extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-
+		
+		// Buttons
 		xButton = new JTextField();
 		xButton.setBounds(37, 42, 55, 35);
 		contentPane.add(xButton);
@@ -127,26 +128,36 @@ public class UserInterface extends JFrame {
 
 		JButton btnGraph = new JButton("Graph");
 		btnGraph.setBounds(25, 165, 75, 35);
+		contentPane.add(btnGraph);
+//		btnGraph.setSelected(true);
 		btnGraph.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				x.add(Integer.parseInt(xButton.getText()));
 				y.add(Integer.parseInt(yButton.getText()));
-
 				repaint();
 			}
 		});
 
-		contentPane.add(btnGraph);
-
 		btnReset = new JButton("Reset");
 		btnReset.setBounds(124, 165, 75, 35);
 		contentPane.add(btnReset);
+		btnReset.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				x.clear();
+				y.clear();
+				repaint();
+			}
+		});
 
-		btnReturnToOrigine = new JButton("Return to origin");
-		btnReturnToOrigine.setBounds(45, 220, 132, 35);
-		contentPane.add(btnReturnToOrigine);
+		btnReturnToOrigin = new JButton("Return to origin");
+		btnReturnToOrigin.setBounds(45, 220, 132, 35);
+		contentPane.add(btnReturnToOrigin);
 		
+		
+		// Radio Buttons
 		JRadioButton polarPlane = new JRadioButton("Polar Plane");
+		polarPlane.setBounds(47, 268, 159, 35);
+		contentPane.add(polarPlane);
 		polarPlane.setSelected(true);
 		polarPlane.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -154,7 +165,6 @@ public class UserInterface extends JFrame {
 					img =  ImageIO.read(this.getClass().getResource("/Polar.png"));
 					repaint();
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
@@ -163,37 +173,27 @@ public class UserInterface extends JFrame {
 			img =  ImageIO.read(this.getClass().getResource("/Polar.png"));
 			repaint();
 		}
-		polarPlane.setBounds(47, 268, 159, 35);
-		contentPane.add(polarPlane);
-
+		
 		JRadioButton cartesianPlane = new JRadioButton("Cartesian Plane");
+		cartesianPlane.setBounds(47, 306, 159, 35);
+		contentPane.add(cartesianPlane);
 		cartesianPlane.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				try {
 					img =  ImageIO.read(this.getClass().getResource("/Cartesian.png"));
 					repaint();
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
 		});
-		cartesianPlane.setBounds(47, 306, 159, 35);
-		contentPane.add(cartesianPlane);
+		
 		ButtonGroup radioButtons = new ButtonGroup();
 		radioButtons.add(cartesianPlane);
 		radioButtons.add(polarPlane);
-		// JLabel backgroundCP;
-		// Image img2 = new
-		// ImageIcon(this.getClass().getResource("/Background-cp.png")).getImage();
-		// backgroundCP = new JLabel("", JLabel.CENTER);
-		// backgroundCP.setIcon(new ImageIcon(img2));
-		// backgroundCP.setBounds(0, 0, 800, 600);
-		// getContentPane().add(backgroundCP);
-
-		JLabel backgroundCC;
-		Image img =  ImageIO.read(this.getClass().getResource("/Background-bar.png"));
-
+		
+		
+		// Labels
 		lblX = new JLabel("x: ");
 		lblX.setBounds(22, 42, 56, 35);
 		contentPane.add(lblX);
@@ -206,13 +206,8 @@ public class UserInterface extends JFrame {
 		lblR.setBounds(25, 98, 56, 35);
 		contentPane.add(lblR);
 		
-
-		label_1 = new JLabel("\u00CE\u00B8:");
-		label_1.setBounds(120, 98, 56, 35);
-		contentPane.add(label_1);
-		backgroundCC = new JLabel("", JLabel.CENTER);
-		backgroundCC.setIcon(new ImageIcon(img));
-		backgroundCC.setBounds(0, 0, 256, 600);
-		getContentPane().add(backgroundCC);
+		lblA = new JLabel("θ:");
+		lblA.setBounds(120, 98, 56, 35);
+		contentPane.add(lblA);
 	}
 }
