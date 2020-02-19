@@ -80,7 +80,13 @@ public class UserInterface extends JFrame {
 			this.drawCircleByCenter(g, 530, 280); //x.get(i), y.get(i));
 		}
 		for (int i = x.size() - 1; i > 0; i--) {
-			g.drawLine(x.get(i), y.get(i), 530, 280);
+			// x debe ser > 255, y > 20, 
+			if(x.get(i) >= 255 && y.get(i) <= 600) {
+//				x.clear();
+//				y.clear();
+				g.drawLine(x.get(i), y.get(i), 530, 280);
+				this.drawCircleByCenter(g, x.get(i), y.get(i));
+			}
 		}
 	}
 	void drawPlane(Graphics g, ImageObserver observer) throws IOException {
