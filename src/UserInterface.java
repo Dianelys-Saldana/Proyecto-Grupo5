@@ -61,6 +61,7 @@ public class UserInterface extends JFrame {
 				try {
 					UserInterface frame = new UserInterface();
 					frame.setVisible(true);
+					frame.setResizable(false);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -84,7 +85,7 @@ public class UserInterface extends JFrame {
 		// Draw line
 		for (int i = x.size() - 1; i > 0; i--) {
 			if(x.get(i) >= 255 && y.get(i) <= 600) { // Check
-				g.drawLine(x.get(i), y.get(i), 530, 280);
+				g.drawLine(x.get(i), y.get(i), 525, 300);
 				this.drawCircleByCenter(g, x.get(i), y.get(i));
 			}
 		}
