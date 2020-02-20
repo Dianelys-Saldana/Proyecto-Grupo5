@@ -69,7 +69,7 @@ public class UserInterface extends JFrame {
 		});
 	}
 
-	// Draw lines and circles
+	// Draw lines and circles in Cartesian Plane
 	public void paint(Graphics g) {
 		// Circular Surface
 		super.paint(g);
@@ -80,18 +80,18 @@ public class UserInterface extends JFrame {
 		}
 		
 		// Draw coordinate
-		this.drawCircleByCenter(g, 525, 300); 
+		this.drawCircleByCenter(g, 525, 300); // Origin
 		
 		// Draw line
 		for (int i = x.size() - 1; i > 0; i--) {
-			if(x.get(i) >= 255 && y.get(i) <= 600) { // Check
-				g.drawLine(x.get(i), y.get(i), 525, 300);
-				this.drawCircleByCenter(g, x.get(i), y.get(i));
+			if(x.get(i) >= -20 && x.get(i) <= 20 && y.get(i) >= -20 && y.get(i) <= 20) { // Escala de -20 a 20
+				g.drawLine(525 + (x.get(i)*14), 300 - (y.get(i)*15), 525, 300);
+				this.drawCircleByCenter(g, 525 + (x.get(i)*14), 300 - (y.get(i)*15));
 			}
 		}
 	}
 	void drawPlane(Graphics g, ImageObserver observer) throws IOException {
-		g.drawImage(img,256,0,observer);
+		g.drawImage(img,250,0,observer);
 	}
 	void drawCircleByCenter(Graphics g, int x, int y) {
 		g.drawOval(x, y, 5, 5);
