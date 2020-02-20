@@ -85,7 +85,7 @@ public class UserInterface extends JFrame {
 		// Draw line
 		for (int i = x.size() - 1; i > 0; i--) {
 			if(x.get(i) >= -20 && x.get(i) <= 20 && y.get(i) >= -20 && y.get(i) <= 20) { // Escala de -20 a 20
-				g.drawLine(525 + (x.get(i)*14), 300 - (y.get(i)*15), 525, 300);
+				g.drawLine(528 + (x.get(i)*14), 302 - (y.get(i)*15), 528, 302);
 				this.drawCircleByCenter(g, 525 + (x.get(i)*14), 300 - (y.get(i)*15));
 			}
 		}
@@ -103,8 +103,8 @@ public class UserInterface extends JFrame {
 	 * @throws IOException 
 	 */
 	public UserInterface() throws IOException {
-		x.add(523);
-		y.add(342);
+		x.add(525);
+		y.add(300);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 800, 600);
 		contentPane = new JPanel();
@@ -159,6 +159,12 @@ public class UserInterface extends JFrame {
 		btnReturnToOrigin = new JButton("Return to origin");
 		btnReturnToOrigin.setBounds(45, 220, 132, 35);
 		contentPane.add(btnReturnToOrigin);
+		btnReset.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				repaint();
+			}
+		});
 		
 		
 		// Radio Buttons
