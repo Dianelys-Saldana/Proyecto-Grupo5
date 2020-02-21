@@ -10,6 +10,8 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JSplitPane;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Panel;
 import java.awt.Point;
 import java.awt.Label;
@@ -51,8 +53,12 @@ public class UserInterface extends JFrame {
 	private JButton btnReset;
 	private JButton btnReturnToOrigin;
 	private Image img;
+	
 	ArrayList<Double> x = new ArrayList<Double>();
 	ArrayList<Double> y = new ArrayList<Double>();
+	
+	ArrayList<Double> r = new ArrayList<Double>(); 
+	ArrayList<Double> a = new ArrayList<Double>();
 	
 	
 	/**
@@ -77,6 +83,7 @@ public class UserInterface extends JFrame {
 		// Circular Surface
 		Graphics2D g2 = (Graphics2D) g; 
 		super.paint(g);
+		
 		try {
 			drawPlane(g,this);
 		} catch (IOException e) {
@@ -84,18 +91,19 @@ public class UserInterface extends JFrame {
 		}
 		
 		for(int i=0;i<x.size();i++) {
-			if(x.get(i)==null) {
+			if(x.get(i) == null) {
 				continue;
 			}
 			this.drawCircleByCenter(g, x.get(i) - 3, y.get(i) - 2);
 		}
-		for(int i=x.size()-1;i>0;i--) {
+		
+		for(int i = x.size() -1; i > 0; i--) {
 			System.out.println(x.size());
-			if(x.get(i-1)==null||x.get(i)==null) {
+			if(x.get(i-1) == null || x.get(i) == null) {
 				continue;
 			}
 			if(xButton.getText() != null && yButton.getText() != null) {
-				DecimalFormat numberFormat = new DecimalFormat("#.00");
+				DecimalFormat numberFormat = new DecimalFormat("#0.00");
 				double r = Math.sqrt(Math.pow(Double.parseDouble(xButton.getText()), 2)
 						+ Math.pow(Double.parseDouble(yButton.getText()), 2));
 				double ang = Math.atan2(Double.parseDouble(yButton.getText()), 
@@ -104,23 +112,14 @@ public class UserInterface extends JFrame {
 				rButton.setText(numberFormat.format(r));
 				angleButton.setText(numberFormat.format(ang));
 			}
-			g2.draw(new Line2D.Double(x.get(i-1), y.get(i-1),x.get(i),y.get(i)));
-			this.drawCircleByCenter(g, 525 + (x.get(i)*13.75), 300 - (y.get(i)*15));
+			g2.draw(new Line2D.Double(x.get(i-1), y.get(i-1), x.get(i), y.get(i)));
+			this.drawCircleByCenter(g, 525 + (x.get(i) * 13.75), 300 - (y.get(i) * 15));
 		}
-		
-//		// Draw coordinate
-//		this.drawCircleByCenter(g, 525, 300); // Origin
-//		
-//		// Draw line
-//		for (int i = x.size() - 1; i > 0; i--) {
-//			if(x.get(i) >= -20 && x.get(i) <= 20 && y.get(i) >= -20 && y.get(i) <= 20) { // Escala de -20 a 20
-//				g.drawLine(528 + (x.get(i)*14), 302 - (y.get(i)*15), 528, 302);
-//				this.drawCircleByCenter(g, 525 + (x.get(i)*14), 300 - (y.get(i)*15));
-//			}
-//		}
+
 	}
+	
 	void drawPlane(Graphics g, ImageObserver observer) throws IOException {
-		g.drawImage(img,250,0,observer);
+		g.drawImage(img, 250, 0, observer);
 	}
 	
 	void drawCircleByCenter(Graphics g, double x, double y) {
@@ -167,14 +166,14 @@ public class UserInterface extends JFrame {
 		JButton btnGraph = new JButton("Graph");
 		btnGraph.setBounds(25, 165, 75, 35);
 		contentPane.add(btnGraph);
-//		btnGraph.setSelected(true);
 		btnGraph.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-//				x.add(Integer.parseInt(xButton.getText()));
-//				y.add(Integer.parseInt(yButton.getText()));
-				x.add(525+Double.parseDouble(xButton.getText())*13.75 );
-				y.add(300-15*Double.parseDouble(yButton.getText()));
-				repaint();
+		public void actionPerformed(ActionEvent e) {
+			if(xButton.getText().isEmpty() && yButton.getText().isEmpty()) {
+				JOptionPane.showMessageDialog(contentPane, "You should input a correct coordinate.", "Error", JOptionPane.ERROR_MESSAGE);
+			}
+			x.add(525 + Double.parseDouble(xButton.getText()) * 13.75);
+			y.add(300 - Double.parseDouble(yButton.getText()) * 15);
+			repaint();
 			}
 		});
 
@@ -243,7 +242,7 @@ public class UserInterface extends JFrame {
 		radioButtons.add(cartesianPlane);
 		radioButtons.add(polarPlane);
 		
-		
+
 		// Labels
 		lblX = new JLabel("x: ");
 		lblX.setBounds(22, 42, 56, 35);
