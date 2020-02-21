@@ -53,14 +53,14 @@ public class UserInterface extends JFrame {
 	private JButton btnReset;
 	private JButton btnReturnToOrigin;
 	private Image img;
-	
+
 	ArrayList<Double> x = new ArrayList<Double>();
 	ArrayList<Double> y = new ArrayList<Double>();
-	
+
 	ArrayList<Double> r = new ArrayList<Double>(); 
 	ArrayList<Double> a = new ArrayList<Double>();
-	
-	
+
+
 	/**
 	 * Launch the application.
 	 */
@@ -83,20 +83,20 @@ public class UserInterface extends JFrame {
 		// Circular Surface
 		Graphics2D g2 = (Graphics2D) g; 
 		super.paint(g);
-		
+
 		try {
 			drawPlane(g,this);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
+
 		for(int i = 0; i < x.size(); i++) {
 			if(x.get(i) == null) {
 				continue;
 			}
 			this.drawCircleByCenter(g, x.get(i) - 3, y.get(i) - 2);
 		}
-		
+
 		for(int i = x.size() -1; i > 0; i--) {
 			System.out.println(x.size());
 			if(x.get(i-1) == null || x.get(i) == null) {
@@ -108,37 +108,37 @@ public class UserInterface extends JFrame {
 						+ Math.pow(Double.parseDouble(yButton.getText()), 2));
 				double ang = Math.atan2(Double.parseDouble(yButton.getText()), 
 						Double.parseDouble(xButton.getText()));
-				
+
 				rButton.setText(numberFormat.format(r));
 				angleButton.setText(numberFormat.format(ang));
 			}
 			g2.draw(new Line2D.Double(x.get(i-1), y.get(i-1), x.get(i), y.get(i)));
 			this.drawCircleByCenter(g, 525 + (x.get(i) * 13.75), 300 - (y.get(i) * 15));
 		}
-		
+
 		for(int i = 0; i < r.size(); i++) {
 			if(r.get(i) == null) {
 				continue;
 			}
 			this.drawCircleByCenter(g, r.get(i) - 3, a.get(i) - 2);
 		}
-		
+
 		for(int i = r.size() -1; i > 0; i--) {
 			g2.draw(new Line2D.Double(r.get(i-1), a.get(i-1), r.get(i), a.get(i)));
 			this.drawCircleByCenter(g, 525 + (r.get(i) * 13.75), 300 - (a.get(i) * 15));
 		}
 	}
-	
+
 	void drawPlane(Graphics g, ImageObserver observer) throws IOException {
 		g.drawImage(img, 250, 0, observer);
 	}
-	
+
 	void drawCircleByCenter(Graphics g, double x, double y) {
 		Graphics2D g2 = (Graphics2D) g;
 		g2.draw(new Ellipse2D.Double(x, y, 5, 5));
 		g2.fill(new Ellipse2D.Double(x, y, 5, 5));
 	}
-	
+
 	/**
 	 * Create the frame.
 	 * @throws IOException 
@@ -154,7 +154,7 @@ public class UserInterface extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
+
 		// Buttons
 		xButton = new JTextField();
 		xButton.setBounds(37, 173, 55, 35);
@@ -180,28 +180,54 @@ public class UserInterface extends JFrame {
 		btnGraph.setBounds(73, 220, 75, 35);
 		contentPane.add(btnGraph);
 		btnGraph.addActionListener(new ActionListener() {
-		public void actionPerformed(ActionEvent e) {
-			if(xButton.getText().isEmpty() || yButton.getText().isEmpty()) {
-				JOptionPane.showMessageDialog(contentPane, "You should input a correct coordinate.", "Error", JOptionPane.ERROR_MESSAGE);
-			}
-			x.add(525 + Double.parseDouble(xButton.getText()) * 13.75);
-			y.add(300 - Double.parseDouble(yButton.getText()) * 15);
-			repaint();
+			public void actionPerformed(ActionEvent e) {
+				if(xButton.getText().isEmpty() || yButton.getText().isEmpty()) {
+					JOptionPane.showMessageDialog(contentPane, "You should input a correct coordinate.", "Error", JOptionPane.ERROR_MESSAGE);
+				}
+				x.add(525+Double.parseDouble(xButton.getText())*13.75 );
+				y.add(300-15*Double.parseDouble(yButton.getText()));
+				DecimalFormat numberFormat = new DecimalFormat("#.00");
+				if(Double.parseDouble(xButton.getText()) != 0.00 && Double.parseDouble(yButton.getText()) != 0.00) {
+					double r = Math.sqrt(Math.pow(Double.parseDouble(xButton.getText()), 2)
+							+ Math.pow(Double.parseDouble(yButton.getText()), 2));
+					double ang = Math.atan(Double.parseDouble(yButton.getText())/ 
+							Double.parseDouble(xButton.getText()));
+					ang = Math.toDegrees(ang);
+
+					rButton.setText(numberFormat.format(r));
+					angleButton.setText(numberFormat.format(ang));
+
+				}
+
+				repaint();
+
 			}
 		});
-		
+
 		JButton btnGraphPolar = new JButton("Graph");
 		btnGraphPolar.setBounds(73, 337, 75, 35);
 		contentPane.add(btnGraphPolar);
 		btnGraphPolar.addActionListener(new ActionListener() {
-		public void actionPerformed(ActionEvent e) {
-			if(rButton.getText().isEmpty() || angleButton.getText().isEmpty()) {
-				JOptionPane.showMessageDialog(contentPane, "You should input a correct coordinate.", "Error", JOptionPane.ERROR_MESSAGE);
-			}
-			r.add(Math.sqrt(Double.parseDouble(rButton.getText()) * Double.parseDouble(rButton.getText()) + 
-					Double.parseDouble(angleButton.getText()) * Double.parseDouble(angleButton.getText())));
-			a.add(Math.atan2(Double.parseDouble(rButton.getText()), Double.parseDouble(angleButton.getText())));
-			repaint();
+			public void actionPerformed(ActionEvent e) {
+				if(rButton.getText().isEmpty() || angleButton.getText().isEmpty()) {
+					JOptionPane.showMessageDialog(contentPane, "You should input a correct coordinate.", "Error", JOptionPane.ERROR_MESSAGE);
+				}
+				DecimalFormat numberFormat = new DecimalFormat("#.00");
+				r.add(Math.sqrt(Double.parseDouble(rButton.getText()) * Double.parseDouble(rButton.getText()) + 
+						Double.parseDouble(angleButton.getText()) * Double.parseDouble(angleButton.getText())));
+				a.add(Math.atan2(Double.parseDouble(rButton.getText()), Double.parseDouble(angleButton.getText())));
+				if(Double.parseDouble(rButton.getText()) != 0.00 && Double.parseDouble(angleButton.getText()) != 0.00) {
+					double  xCoor = Double.parseDouble(rButton.getText())*
+							Math.cos(Double.parseDouble(angleButton.getText()));
+					double  yCoor = Double.parseDouble(rButton.getText())*
+							Math.sin(Double.parseDouble(angleButton.getText()));
+
+					xButton.setText(numberFormat.format(xCoor));
+					yButton.setText(numberFormat.format(yCoor));
+
+				}
+				repaint();
+				
 			}
 		});
 
@@ -230,8 +256,8 @@ public class UserInterface extends JFrame {
 				repaint();
 			}
 		});
-		
-		
+
+
 		// Radio Buttons
 		JRadioButton polarPlane = new JRadioButton("Polar Plane");
 		polarPlane.setBounds(22, 80, 159, 35);
@@ -251,7 +277,7 @@ public class UserInterface extends JFrame {
 			img =  ImageIO.read(this.getClass().getResource("/Polar.png"));
 			repaint();
 		}
-		
+
 		JRadioButton cartesianPlane = new JRadioButton("Cartesian Plane");
 		cartesianPlane.setBounds(22, 46, 159, 35);
 		contentPane.add(cartesianPlane);
@@ -265,11 +291,11 @@ public class UserInterface extends JFrame {
 				}
 			}
 		});
-		
+
 		ButtonGroup radioButtons = new ButtonGroup();
 		radioButtons.add(cartesianPlane);
 		radioButtons.add(polarPlane);
-		
+
 
 		// Labels
 		lblX = new JLabel("x: ");
@@ -283,7 +309,7 @@ public class UserInterface extends JFrame {
 		lblR = new JLabel("r:");
 		lblR.setBounds(22, 290, 56, 35);
 		contentPane.add(lblR);
-		
+
 		lblA = new JLabel("θ:");
 		lblA.setBounds(113, 290, 56, 35);
 		contentPane.add(lblA);
