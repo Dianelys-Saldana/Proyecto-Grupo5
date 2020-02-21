@@ -79,16 +79,23 @@ public class UserInterface extends JFrame {
 			e.printStackTrace();
 		}
 		
-		// Draw coordinate
-		this.drawCircleByCenter(g, 525, 300); // Origin
-		
-		// Draw line
-		for (int i = x.size() - 1; i > 0; i--) {
-			if(x.get(i) >= -20 && x.get(i) <= 20 && y.get(i) >= -20 && y.get(i) <= 20) { // Escala de -20 a 20
-				g.drawLine(528 + (x.get(i)*14), 302 - (y.get(i)*15), 528, 302);
-				this.drawCircleByCenter(g, 525 + (x.get(i)*14), 300 - (y.get(i)*15));
-			}
+		for(int i=0;i<x.size();i++) {
+			this.drawCircleByCenter(g, x.get(i), y.get(i));
 		}
+		for(int i=x.size()-1;i>0;i--) {
+			g.drawLine(x.get(i),y.get(i), x.get(i-1), y.get(i-1));
+		}
+		
+//		// Draw coordinate
+//		this.drawCircleByCenter(g, 525, 300); // Origin
+//		
+//		// Draw line
+//		for (int i = x.size() - 1; i > 0; i--) {
+//			if(x.get(i) >= -20 && x.get(i) <= 20 && y.get(i) >= -20 && y.get(i) <= 20) { // Escala de -20 a 20
+//				g.drawLine(528 + (x.get(i)*14), 302 - (y.get(i)*15), 528, 302);
+//				this.drawCircleByCenter(g, 525 + (x.get(i)*14), 300 - (y.get(i)*15));
+//			}
+//		}
 	}
 	void drawPlane(Graphics g, ImageObserver observer) throws IOException {
 		g.drawImage(img,250,0,observer);
@@ -161,7 +168,6 @@ public class UserInterface extends JFrame {
 		contentPane.add(btnReturnToOrigin);
 		btnReset.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
 				repaint();
 			}
 		});
