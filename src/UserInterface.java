@@ -168,6 +168,8 @@ public class UserInterface extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				x.clear();
 				y.clear();
+				x.add(525.0);
+				y.add(300.0);
 				repaint();
 			}
 		});
