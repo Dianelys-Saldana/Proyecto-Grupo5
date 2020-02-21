@@ -90,7 +90,7 @@ public class UserInterface extends JFrame {
 			e.printStackTrace();
 		}
 		
-		for(int i=0;i<x.size();i++) {
+		for(int i = 0; i < x.size(); i++) {
 			if(x.get(i) == null) {
 				continue;
 			}
@@ -115,7 +115,18 @@ public class UserInterface extends JFrame {
 			g2.draw(new Line2D.Double(x.get(i-1), y.get(i-1), x.get(i), y.get(i)));
 			this.drawCircleByCenter(g, 525 + (x.get(i) * 13.75), 300 - (y.get(i) * 15));
 		}
-
+		
+		for(int i = 0; i < r.size(); i++) {
+			if(r.get(i) == null) {
+				continue;
+			}
+			this.drawCircleByCenter(g, r.get(i) - 3, a.get(i) - 2);
+		}
+		
+		for(int i = r.size() -1; i > 0; i--) {
+			g2.draw(new Line2D.Double(r.get(i-1), a.get(i-1), r.get(i), a.get(i)));
+			this.drawCircleByCenter(g, 525 + (r.get(i) * 13.75), 300 - (a.get(i) * 15));
+		}
 	}
 	
 	void drawPlane(Graphics g, ImageObserver observer) throws IOException {
@@ -135,6 +146,8 @@ public class UserInterface extends JFrame {
 	public UserInterface() throws IOException {
 		x.add(525.0);
 		y.add(300.0);
+		r.add(525.0);
+		a.add(300.0);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 800, 600);
 		contentPane = new JPanel();
@@ -144,31 +157,31 @@ public class UserInterface extends JFrame {
 		
 		// Buttons
 		xButton = new JTextField();
-		xButton.setBounds(37, 42, 55, 35);
+		xButton.setBounds(37, 173, 55, 35);
 		contentPane.add(xButton);
 		xButton.setColumns(10);
 
 		yButton = new JTextField();
 		yButton.setColumns(10);
-		yButton.setBounds(133, 42, 55, 35);
+		yButton.setBounds(133, 173, 55, 35);
 		contentPane.add(yButton);
 
 		rButton = new JTextField();
 		rButton.setColumns(10);
-		rButton.setBounds(37, 98, 55, 35);
+		rButton.setBounds(37, 290, 55, 35);
 		contentPane.add(rButton);
 
 		angleButton = new JTextField();
 		angleButton.setColumns(10);
-		angleButton.setBounds(133, 98, 55, 35);
+		angleButton.setBounds(133, 290, 55, 35);
 		contentPane.add(angleButton);
 
 		JButton btnGraph = new JButton("Graph");
-		btnGraph.setBounds(25, 165, 75, 35);
+		btnGraph.setBounds(73, 220, 75, 35);
 		contentPane.add(btnGraph);
 		btnGraph.addActionListener(new ActionListener() {
 		public void actionPerformed(ActionEvent e) {
-			if(xButton.getText().isEmpty() && yButton.getText().isEmpty()) {
+			if(xButton.getText().isEmpty() || yButton.getText().isEmpty()) {
 				JOptionPane.showMessageDialog(contentPane, "You should input a correct coordinate.", "Error", JOptionPane.ERROR_MESSAGE);
 			}
 			x.add(525 + Double.parseDouble(xButton.getText()) * 13.75);
@@ -176,9 +189,24 @@ public class UserInterface extends JFrame {
 			repaint();
 			}
 		});
+		
+		JButton btnGraphPolar = new JButton("Graph");
+		btnGraphPolar.setBounds(73, 337, 75, 35);
+		contentPane.add(btnGraphPolar);
+		btnGraphPolar.addActionListener(new ActionListener() {
+		public void actionPerformed(ActionEvent e) {
+			if(rButton.getText().isEmpty() || angleButton.getText().isEmpty()) {
+				JOptionPane.showMessageDialog(contentPane, "You should input a correct coordinate.", "Error", JOptionPane.ERROR_MESSAGE);
+			}
+			r.add(Math.sqrt(Double.parseDouble(rButton.getText()) * Double.parseDouble(rButton.getText()) + 
+					Double.parseDouble(angleButton.getText()) * Double.parseDouble(angleButton.getText())));
+			a.add(Math.atan2(Double.parseDouble(rButton.getText()), Double.parseDouble(angleButton.getText())));
+			repaint();
+			}
+		});
 
 		btnReset = new JButton("Reset");
-		btnReset.setBounds(124, 165, 75, 35);
+		btnReset.setBounds(37, 437, 132, 35);
 		contentPane.add(btnReset);
 		btnReset.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -191,7 +219,7 @@ public class UserInterface extends JFrame {
 		});
 
 		btnReturnToOrigin = new JButton("Return to origin");
-		btnReturnToOrigin.setBounds(45, 220, 132, 35);
+		btnReturnToOrigin.setBounds(37, 496, 132, 35);
 		contentPane.add(btnReturnToOrigin);
 		btnReturnToOrigin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -206,7 +234,7 @@ public class UserInterface extends JFrame {
 		
 		// Radio Buttons
 		JRadioButton polarPlane = new JRadioButton("Polar Plane");
-		polarPlane.setBounds(47, 268, 159, 35);
+		polarPlane.setBounds(22, 80, 159, 35);
 		contentPane.add(polarPlane);
 		polarPlane.setSelected(true);
 		polarPlane.addActionListener(new ActionListener() {
@@ -225,7 +253,7 @@ public class UserInterface extends JFrame {
 		}
 		
 		JRadioButton cartesianPlane = new JRadioButton("Cartesian Plane");
-		cartesianPlane.setBounds(47, 306, 159, 35);
+		cartesianPlane.setBounds(22, 46, 159, 35);
 		contentPane.add(cartesianPlane);
 		cartesianPlane.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -245,19 +273,19 @@ public class UserInterface extends JFrame {
 
 		// Labels
 		lblX = new JLabel("x: ");
-		lblX.setBounds(22, 42, 56, 35);
+		lblX.setBounds(22, 173, 56, 35);
 		contentPane.add(lblX);
 
 		lblY = new JLabel("y:");
-		lblY.setBounds(120, 42, 56, 35);
+		lblY.setBounds(113, 173, 56, 35);
 		contentPane.add(lblY);
 
 		lblR = new JLabel("r:");
-		lblR.setBounds(25, 98, 56, 35);
+		lblR.setBounds(22, 290, 56, 35);
 		contentPane.add(lblR);
 		
 		lblA = new JLabel("θ:");
-		lblA.setBounds(120, 98, 56, 35);
+		lblA.setBounds(113, 290, 56, 35);
 		contentPane.add(lblA);
 	}
 }
