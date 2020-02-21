@@ -34,6 +34,7 @@ import java.awt.geom.Ellipse2D;
 import java.awt.geom.Line2D;
 import java.awt.image.ImageObserver;
 import java.io.IOException;
+import java.text.DecimalFormat;
 import java.awt.event.ActionEvent;
 
 public class UserInterface extends JFrame {
@@ -92,6 +93,16 @@ public class UserInterface extends JFrame {
 			System.out.println(x.size());
 			if(x.get(i-1)==null||x.get(i)==null) {
 				continue;
+			}
+			if(xButton.getText() != null && yButton.getText() != null) {
+				DecimalFormat numberFormat = new DecimalFormat("#.00");
+				double r = Math.sqrt(Math.pow(Double.parseDouble(xButton.getText()), 2)
+						+ Math.pow(Double.parseDouble(yButton.getText()), 2));
+				double ang = Math.atan2(Double.parseDouble(yButton.getText()), 
+						Double.parseDouble(xButton.getText()));
+				
+				rButton.setText(numberFormat.format(r));
+				angleButton.setText(numberFormat.format(ang));
 			}
 			g2.draw(new Line2D.Double(x.get(i-1), y.get(i-1),x.get(i),y.get(i)));
 			this.drawCircleByCenter(g, 525 + (x.get(i)*13.75), 300 - (y.get(i)*15));
@@ -190,7 +201,6 @@ public class UserInterface extends JFrame {
 				x.add(525.0);
 				y.add(300.0);
 				repaint();
-				System.out.println("entre");
 			}
 		});
 		
