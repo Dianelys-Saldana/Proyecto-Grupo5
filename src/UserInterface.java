@@ -87,7 +87,7 @@ public class UserInterface extends JFrame {
 			this.drawCircleByCenter(g, x.get(i) - 3, y.get(i) - 2);
 		}
 		for(int i=x.size()-1;i>0;i--) {
-			g2.draw(new Line2D.Double(x.get(i-1), y.get(i-1), 528 + (x.get(i)*13.75), 302 - (y.get(i)*15)));
+			g2.draw(new Line2D.Double(x.get(i-1), y.get(i-1),x.get(i),y.get(i)));
 			this.drawCircleByCenter(g, 525 + (x.get(i)*13.75), 300 - (y.get(i)*15));
 		}
 		
@@ -155,8 +155,8 @@ public class UserInterface extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 //				x.add(Integer.parseInt(xButton.getText()));
 //				y.add(Integer.parseInt(yButton.getText()));
-				x.add(Double.parseDouble(xButton.getText()));
-				y.add(Double.parseDouble(yButton.getText()));
+				x.add(525+Double.parseDouble(xButton.getText())*13.75 );
+				y.add(300-15*Double.parseDouble(yButton.getText()));
 				repaint();
 			}
 		});
