@@ -1,6 +1,7 @@
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Image;
 
 import javax.swing.ImageIcon;
@@ -29,6 +30,8 @@ import javax.imageio.ImageIO;
 import javax.swing.ButtonGroup;
 import javax.swing.DropMode;
 import java.awt.event.ActionListener;
+import java.awt.geom.Ellipse2D;
+import java.awt.geom.Line2D;
 import java.awt.image.ImageObserver;
 import java.io.IOException;
 import java.awt.event.ActionEvent;
@@ -48,8 +51,8 @@ public class UserInterface extends JFrame {
 	private JButton btnReturnToOrigin;
 	private Image img;
 
-	ArrayList<Integer> x = new ArrayList<Integer>();
-	ArrayList<Integer> y = new ArrayList<Integer>();
+	ArrayList<Double> x = new ArrayList<Double>();
+	ArrayList<Double> y = new ArrayList<Double>();
 	
 	
 	/**
@@ -72,6 +75,7 @@ public class UserInterface extends JFrame {
 	// Draw lines and circles in Cartesian Plane
 	public void paint(Graphics g) {
 		// Circular Surface
+		Graphics2D g2 = (Graphics2D) g; 
 		super.paint(g);
 		try {
 			drawPlane(g,this);
@@ -80,10 +84,11 @@ public class UserInterface extends JFrame {
 		}
 		
 		for(int i=0;i<x.size();i++) {
-			this.drawCircleByCenter(g, x.get(i), y.get(i));
+			this.drawCircleByCenter(g, x.get(i) - 3, y.get(i) - 2);
 		}
 		for(int i=x.size()-1;i>0;i--) {
-			g.drawLine(x.get(i),y.get(i), x.get(i-1), y.get(i-1));
+			g2.draw(new Line2D.Double(x.get(i-1), y.get(i-1), 528 + (x.get(i)*13.75), 302 - (y.get(i)*15)));
+			this.drawCircleByCenter(g, 525 + (x.get(i)*13.75), 300 - (y.get(i)*15));
 		}
 		
 //		// Draw coordinate
@@ -100,9 +105,11 @@ public class UserInterface extends JFrame {
 	void drawPlane(Graphics g, ImageObserver observer) throws IOException {
 		g.drawImage(img,250,0,observer);
 	}
-	void drawCircleByCenter(Graphics g, int x, int y) {
-		g.drawOval(x, y, 5, 5);
-		g.fillOval(x, y, 5, 5);
+	
+	void drawCircleByCenter(Graphics g, double x, double y) {
+		Graphics2D g2 = (Graphics2D) g;
+		g2.draw(new Ellipse2D.Double(x, y, 5, 5));
+		g2.fill(new Ellipse2D.Double(x, y, 5, 5));
 	}
 	
 	/**
@@ -110,8 +117,8 @@ public class UserInterface extends JFrame {
 	 * @throws IOException 
 	 */
 	public UserInterface() throws IOException {
-		x.add(525);
-		y.add(300);
+		x.add(525.0);
+		y.add(300.0);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 800, 600);
 		contentPane = new JPanel();
@@ -146,8 +153,10 @@ public class UserInterface extends JFrame {
 //		btnGraph.setSelected(true);
 		btnGraph.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				x.add(Integer.parseInt(xButton.getText()));
-				y.add(Integer.parseInt(yButton.getText()));
+//				x.add(Integer.parseInt(xButton.getText()));
+//				y.add(Integer.parseInt(yButton.getText()));
+				x.add(Double.parseDouble(xButton.getText()));
+				y.add(Double.parseDouble(yButton.getText()));
 				repaint();
 			}
 		});
