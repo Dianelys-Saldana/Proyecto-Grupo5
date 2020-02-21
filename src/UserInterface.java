@@ -50,7 +50,6 @@ public class UserInterface extends JFrame {
 	private JButton btnReset;
 	private JButton btnReturnToOrigin;
 	private Image img;
-
 	ArrayList<Double> x = new ArrayList<Double>();
 	ArrayList<Double> y = new ArrayList<Double>();
 	
@@ -84,9 +83,16 @@ public class UserInterface extends JFrame {
 		}
 		
 		for(int i=0;i<x.size();i++) {
+			if(x.get(i)==null) {
+				continue;
+			}
 			this.drawCircleByCenter(g, x.get(i) - 3, y.get(i) - 2);
 		}
 		for(int i=x.size()-1;i>0;i--) {
+			System.out.println(x.size());
+			if(x.get(i-1)==null||x.get(i)==null) {
+				continue;
+			}
 			g2.draw(new Line2D.Double(x.get(i-1), y.get(i-1),x.get(i),y.get(i)));
 			this.drawCircleByCenter(g, 525 + (x.get(i)*13.75), 300 - (y.get(i)*15));
 		}
@@ -177,9 +183,14 @@ public class UserInterface extends JFrame {
 		btnReturnToOrigin = new JButton("Return to origin");
 		btnReturnToOrigin.setBounds(45, 220, 132, 35);
 		contentPane.add(btnReturnToOrigin);
-		btnReset.addActionListener(new ActionListener() {
+		btnReturnToOrigin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				x.add(null);
+				y.add(null);
+				x.add(525.0);
+				y.add(300.0);
 				repaint();
+				System.out.println("entre");
 			}
 		});
 		
