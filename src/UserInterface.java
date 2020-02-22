@@ -109,7 +109,7 @@ public class UserInterface extends JFrame {
 				angleButton.setText(numberFormat.format(ang));
 			}
 			g2.draw(new Line2D.Double(x.get(i-1), y.get(i-1), x.get(i), y.get(i)));
-			this.drawCircleByCenter(g, 525 + (x.get(i) * 14.5), 300 - (y.get(i) * 15));
+			this.drawCircleByCenter(g, 525 + (x.get(i) * 14.5), 300 - (y.get(i) * 14.5));
 		}
 
 		//		for(int i = 0; i < r.size(); i++) {
@@ -237,7 +237,7 @@ public class UserInterface extends JFrame {
 					xButton.setText(numberFormat.format(xCoor));
 					yButton.setText(numberFormat.format(yCoor));
 					x.add(xCoor*14.5+525);
-					y.add(300-15*yCoor);
+					y.add(300-14.5*yCoor);
 				}
 				repaint();
 
