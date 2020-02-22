@@ -116,17 +116,17 @@ public class UserInterface extends JFrame {
 			this.drawCircleByCenter(g, 525 + (x.get(i) * 13.75), 300 - (y.get(i) * 15));
 		}
 
-		for(int i = 0; i < r.size(); i++) {
-			if(r.get(i) == null) {
-				continue;
-			}
-			this.drawCircleByCenter(g, r.get(i) - 3, a.get(i) - 2);
-		}
-
-		for(int i = r.size() -1; i > 0; i--) {
-			g2.draw(new Line2D.Double(r.get(i-1), a.get(i-1), r.get(i), a.get(i)));
-			this.drawCircleByCenter(g, 525 + (r.get(i) * 13.75), 300 - (a.get(i) * 15));
-		}
+//		for(int i = 0; i < r.size(); i++) {
+//			if(r.get(i) == null) {
+//				continue;
+//			}
+//			this.drawCircleByCenter(g, r.get(i) - 3, a.get(i) - 2);
+//		}
+//
+//		for(int i = r.size() -1; i > 0; i--) {
+//			g2.draw(new Line2D.Double(r.get(i-1), a.get(i-1), r.get(i), a.get(i)));
+//			this.drawCircleByCenter(g, 525 + (r.get(i) * 13.75), 300 - (a.get(i) * 15));
+//		}
 	}
 
 	void drawPlane(Graphics g, ImageObserver observer) throws IOException {
@@ -146,8 +146,8 @@ public class UserInterface extends JFrame {
 	public UserInterface() throws IOException {
 		x.add(525.0);
 		y.add(300.0);
-		r.add(525.0);
-		a.add(300.0);
+//		r.add(525.0);
+//		a.add(300.0);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 800, 600);
 		contentPane = new JPanel();
@@ -224,7 +224,8 @@ public class UserInterface extends JFrame {
 
 					xButton.setText(numberFormat.format(xCoor));
 					yButton.setText(numberFormat.format(yCoor));
-
+					x.add(xCoor*13.75+525);
+					y.add(300-15*yCoor);
 				}
 				repaint();
 				
