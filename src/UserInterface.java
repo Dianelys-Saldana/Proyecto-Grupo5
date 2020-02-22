@@ -256,6 +256,18 @@ public class UserInterface extends JFrame {
 				repaint();
 			}
 		});
+		
+		JButton btnClearCoordinates = new JButton("Clear Coordinates");
+		btnClearCoordinates.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				xButton.setText("");
+				yButton.setText("");
+				angleButton.setText("");
+				rButton.setText("");
+			}
+		});
+		btnClearCoordinates.setBounds(28, 393, 141, 35);
+		contentPane.add(btnClearCoordinates);
 
 
 		// Radio Buttons
