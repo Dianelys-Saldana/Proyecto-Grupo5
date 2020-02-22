@@ -98,7 +98,6 @@ public class UserInterface extends JFrame {
 		}
 
 		for(int i = x.size() -1; i > 0; i--) {
-			System.out.println(x.size());
 			if(x.get(i-1) == null || x.get(i) == null) {
 				continue;
 			}
@@ -108,7 +107,7 @@ public class UserInterface extends JFrame {
 						+ Math.pow(Double.parseDouble(yButton.getText()), 2));
 				double ang = Math.atan2(Double.parseDouble(yButton.getText()), 
 						Double.parseDouble(xButton.getText()));
-
+				ang = Math.toDegrees(ang);
 				rButton.setText(numberFormat.format(r));
 				angleButton.setText(numberFormat.format(ang));
 			}
@@ -213,15 +212,16 @@ public class UserInterface extends JFrame {
 					JOptionPane.showMessageDialog(contentPane, "You should input a correct coordinate.", "Error", JOptionPane.ERROR_MESSAGE);
 				}
 				DecimalFormat numberFormat = new DecimalFormat("#.00");
-				r.add(Math.sqrt(Double.parseDouble(rButton.getText()) * Double.parseDouble(rButton.getText()) + 
-						Double.parseDouble(angleButton.getText()) * Double.parseDouble(angleButton.getText())));
-				a.add(Math.atan2(Double.parseDouble(rButton.getText()), Double.parseDouble(angleButton.getText())));
+//				r.add(Math.sqrt(Double.parseDouble(rButton.getText()) * Double.parseDouble(rButton.getText()) + 
+//						Double.parseDouble(angleButton.getText()) * Double.parseDouble(angleButton.getText())));
+//				a.add(Math.atan2(Double.parseDouble(rButton.getText()), Double.parseDouble(angleButton.getText())));
 				if(Double.parseDouble(rButton.getText()) != 0.00 && Double.parseDouble(angleButton.getText()) != 0.00) {
+					double radians = Math.toRadians(Double.parseDouble(angleButton.getText()));
 					double  xCoor = Double.parseDouble(rButton.getText())*
-							Math.cos(Double.parseDouble(angleButton.getText()));
+							Math.cos(radians);
 					double  yCoor = Double.parseDouble(rButton.getText())*
-							Math.sin(Double.parseDouble(angleButton.getText()));
-
+							Math.sin(radians);
+					System.out.println(radians);
 					xButton.setText(numberFormat.format(xCoor));
 					yButton.setText(numberFormat.format(yCoor));
 					x.add(xCoor*13.75+525);
@@ -311,8 +311,8 @@ public class UserInterface extends JFrame {
 		lblR.setBounds(22, 290, 56, 35);
 		contentPane.add(lblR);
 
-		lblA = new JLabel("θ:");
-		lblA.setBounds(113, 290, 56, 35);
+		lblA = new JLabel("Theta:");
+		lblA.setBounds(95, 290, 56, 35);
 		contentPane.add(lblA);
 	}
 }
