@@ -178,8 +178,16 @@ public class UserInterface extends JFrame {
 		btnGraph.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				if(!xButton.getText().matches("[0-9]+[.]?[0-9]*") || !yButton.getText().matches("[0-9]+[.]?[0-9]*")) {
+				if(!xButton.getText().matches("[-]?[0-9]+[.]?[0-9]*") || !yButton.getText().matches("[-]?[0-9]+[.]?[0-9]*")) {
 					JOptionPane.showMessageDialog(contentPane, "You should input correct coordinates.", "Error", JOptionPane.ERROR_MESSAGE);
+					return;
+				}
+				if(Double.parseDouble(xButton.getText())>20||Double.parseDouble(xButton.getText())<-20) {
+					JOptionPane.showMessageDialog(contentPane, "Please use smaller coordinates", "Error", JOptionPane.ERROR_MESSAGE);
+					return;
+				}
+				if(Double.parseDouble(yButton.getText())>20||Double.parseDouble(yButton.getText())<-20) {
+					JOptionPane.showMessageDialog(contentPane, "Please use smaller coordinates", "Error", JOptionPane.ERROR_MESSAGE);
 					return;
 				}
 				x.add(525+Double.parseDouble(xButton.getText())*13.75 );
@@ -208,10 +216,15 @@ public class UserInterface extends JFrame {
 		btnGraphPolar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				if(!rButton.getText().matches("[0-9]+[.]?[0-9]*") || !angleButton.getText().matches("[0-9]+[.]?[0-9]*")) {
+				if(!rButton.getText().matches("[-]?[0-9]+[.]?[0-9]*") || !angleButton.getText().matches("[-]?[0-9]+[.]?[0-9]*")) {
 					JOptionPane.showMessageDialog(contentPane, "You should input a correct coordinate.", "Error", JOptionPane.ERROR_MESSAGE);
 					return;
 				}
+				if(Double.parseDouble(rButton.getText())>20||Double.parseDouble(rButton.getText())<-20) {
+					JOptionPane.showMessageDialog(contentPane, "Please use smaller coordinates", "Error", JOptionPane.ERROR_MESSAGE);
+					return;
+				}
+				
 				DecimalFormat numberFormat = new DecimalFormat("#.00");
 				
 				if(Double.parseDouble(rButton.getText()) != 0.00 && Double.parseDouble(angleButton.getText()) != 0.00) {
