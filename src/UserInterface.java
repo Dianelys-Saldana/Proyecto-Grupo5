@@ -109,7 +109,7 @@ public class UserInterface extends JFrame {
 				angleButton.setText(numberFormat.format(ang));
 			}
 			g2.draw(new Line2D.Double(x.get(i-1), y.get(i-1), x.get(i), y.get(i)));
-			this.drawCircleByCenter(g, 525 + (x.get(i) * 13.75), 300 - (y.get(i) * 15));
+			this.drawCircleByCenter(g, 525 + (x.get(i) * 14.5), 300 - (y.get(i) * 15));
 		}
 
 		//		for(int i = 0; i < r.size(); i++) {
@@ -190,7 +190,7 @@ public class UserInterface extends JFrame {
 					JOptionPane.showMessageDialog(contentPane, "Please use smaller coordinates", "Error", JOptionPane.ERROR_MESSAGE);
 					return;
 				}
-				x.add(525+Double.parseDouble(xButton.getText())*13.75 );
+				x.add(525+Double.parseDouble(xButton.getText())*13.75);
 				y.add(300-15*Double.parseDouble(yButton.getText()));
 				DecimalFormat numberFormat = new DecimalFormat("#.00");
 				if(Double.parseDouble(xButton.getText()) != 0.00 && Double.parseDouble(yButton.getText()) != 0.00) {
@@ -225,7 +225,7 @@ public class UserInterface extends JFrame {
 					return;
 				}
 				
-				DecimalFormat numberFormat = new DecimalFormat("#.00");
+				DecimalFormat numberFormat = new DecimalFormat("#0.00");
 				
 				if(Double.parseDouble(rButton.getText()) != 0.00 && Double.parseDouble(angleButton.getText()) != 0.00) {
 					double radians = Math.toRadians(Double.parseDouble(angleButton.getText()));
@@ -236,7 +236,7 @@ public class UserInterface extends JFrame {
 					System.out.println(radians);
 					xButton.setText(numberFormat.format(xCoor));
 					yButton.setText(numberFormat.format(yCoor));
-					x.add(xCoor*13.75+525);
+					x.add(xCoor*14.5+525);
 					y.add(300-15*yCoor);
 				}
 				repaint();
