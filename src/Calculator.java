@@ -1,5 +1,5 @@
 /* Objetivo
- * Cambiar las coordenadas de polares a cartesianas y de cartesiana a polares
+ * Cambiar las coordenadas de polares a cartesianas y de cartesianas a polares
  */
 
 /* Precondiciones
