@@ -1,26 +1,26 @@
 /* Objetivo
- * Esta clase es la encargada de diplay el GUI en el cual el usuario podra interactia con la aplicacion.
- * Se encarga de monitorear que el usuario oprime para poder asi hacer la accion correspodiente.
+ * Esta clase es la encargada de mostrar el GUI en el cual el usuario podra interactuar con la aplicacion.
+ * Mediante esta, se monitorea todo lo que el usuario oprime para poder asi hacer la accion correspodiente.
  */
 
 /* Precondiciones
- * El usuario sera bienvenido por un ventana en el cual vera una grafica en coordenadas polares.
- * En la ventana hay unas cajas de texto en la cuales el usuario podra escribir numeros los cuales
-   representan las coordenadas a las cuales el usuario quiere grafica para ambos polares como cartesianas.
- * Podra cambiar la grafica de polares a cartesiana y vice versa con los botones polar plane y 
-   cartesian plane, graficar las coordenadas introducidas con el boton de graph, borrar todas los
-   trazos con el boton reset y  volver al origen sin borrar los trazos con el boton de return to origin.
+ * El usuario sera bienvenido por una ventana en la cual vera una grafica en coordenadas polares.
+ * En la parte izquierda de la ventana hay unas cajas de texto en la cuales el usuario podra escribir numeros que
+   representan las coordenadas que este desee graficar; tanto polares como cartesianas.
+ * Podra cambiar la grafica de modo polar a cartesiana y vice versa con los botones 'Polar plane' y 
+   'Cartesian plane', graficar las coordenadas introducidas con el boton de 'Graph', borrar todas los
+   trazos con el boton 'Reset' y  volver al origen sin borrar los trazos con el boton 'Return to origin'.
  */
 
 /* Poscondiciones
- * Una vez que el usuario escriba las coordenadas en las cajas de texto correspodientes a el tipo de coordenadas
-   que el usuaruo quiera graficar al oprimir el boton de graph se graficara una linea en el plano asia las 
-   coordenadas provistas.
- * Si el usuario quiere ver ese mismo trazo en el otro plano simplemente debe presionar el boton del plano al que
-   quiere ver sea cartesiano o polar y el plano cambiara correspondientemente sin borrra los trazos.
- * Del usuario no estar satisfecho con los trazos puede borrarlos oprimiendo el boton de reset.
- * Del usuario querer volver al origen de la grafica para dibujar trazos desde ese lugar simplemente debe oprimir
-   el boton de return to origin y listo.
+ * Una vez que el usuario escriba las coordenadas en las cajas de texto correspodientes, se graficara una linea en el plano desde
+ * el origen hasta las coordenadas provistas. Esto ocurrira una vez el usuaruo quiera graficar y oprima el boton de 'Graph'.
+ * El usuario decidira que coordenadas ingresar, ya sean polares o cartesianas.
+ * Si el usuario quiere ver ese mismo trazo en el plano contrario, simplemente debe presionar el boton del plano al que
+   quiere ver; sea cartesiano o polar, y el plano cambiara correspondientemente sin borrar los trazos.
+ * Del usuario no estar satisfecho con los trazos puede borrarlos oprimiendo el boton de 'Reset'.
+ * Del usuario querer volver al origen de la grafica para dibujar trazos desde ese lugar, simplemente debe oprimir
+   el boton de 'Return to origin' y listo.
  */  
 
 // Autor: Angel D. Hernandez Denis

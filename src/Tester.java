@@ -3,7 +3,6 @@ import static org.junit.Assert.*;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
-import org.junit.After;
 import org.junit.Test;
 
 // Autor: Angel D. Hernandez Denis

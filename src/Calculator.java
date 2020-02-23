@@ -3,11 +3,11 @@
  */
 
 /* Precondiciones
- * Recibe las coordenadas polares o cartesiana que escribio el usuario.
+ * Recibe las coordenadas polares o cartesianas que escriba el usuario.
  */
 
 /* Poscondiciones
- * Camabia las coodenadas recibidas de polares a cartesianas o de cartesianas a polares.
+ * Cambia las coordenadas recibidas de polares a cartesianas o vice versa.
  */
 
 // Autor: Carlos Rodriguez
