@@ -218,7 +218,7 @@ public class UserInterface extends JFrame {
 			}
 		});
 		
-		//Carlos Rodriguez 20/feb/2020
+		//Carlos Rodriguez and Jose A Velazquez 20/feb/2020
 		JButton btnGraphPolar = new JButton("Graph");
 		btnGraphPolar.setBounds(75, 335, 75, 35);
 		contentPane.add(btnGraphPolar);
@@ -293,7 +293,7 @@ public class UserInterface extends JFrame {
 		contentPane.add(btnClearCoordinates);
 
 		// Radio Buttons
-		//Carlos Rodriguez 17/feb/2020
+		//Carlos Rodriguez and Jose A Velazquez 17/feb/2020
 		JRadioButton polarPlane = new JRadioButton("Polar Plane");
 		polarPlane.setBounds(30, 85, 160, 35);
 		contentPane.add(polarPlane);
@@ -312,7 +312,7 @@ public class UserInterface extends JFrame {
 			img = ImageIO.read(this.getClass().getResource("/Polar.png"));
 			repaint();
 		}
-		//Carlos Rodriguez 17/feb/2020
+		//Carlos Rodriguez and Jose A Velazquez 17/feb/2020
 		JRadioButton cartesianPlane = new JRadioButton("Cartesian Plane");
 		cartesianPlane.setBounds(30, 45, 160, 35);
 		contentPane.add(cartesianPlane);
