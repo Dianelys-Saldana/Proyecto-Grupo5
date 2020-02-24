@@ -78,6 +78,7 @@ public class UserInterface extends JFrame {
 	/**
 	 * Launch the application.
 	 */
+	// Dianelys Saldana 19/feb/2020
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -93,7 +94,8 @@ public class UserInterface extends JFrame {
 	}
 
 	// Draw lines and circles in Cartesian Plane
-	//Carlos Rodriguez 15/feb/2020
+	// Carlos Rodriguez 15/feb/2020
+	// Dianelys Saldana 20/feb/2020
 	public void paint(Graphics g) {	
 		// Circular Surface
 		Graphics2D g2 = (Graphics2D) g;
@@ -129,13 +131,15 @@ public class UserInterface extends JFrame {
 			this.drawCircleByCenter(g, 525 + (x.get(i) * 13.75), 300 - (y.get(i) * 14.5));
 		}
 	}
-	//Change the plane on the frame
-	////Carlos Rodriguez 15/feb/2020
+	
+	// Change the plane on the frame
+	// Carlos Rodriguez 15/feb/2020
 	void drawPlane(Graphics g, ImageObserver observer) throws IOException {
 		g.drawImage(img, 250, 0, observer);
 	}
-	//Create circles on the frame
-	//Carlos Rodriguez 15/feb/2020
+	// Create circles on the frame
+	// Carlos Rodriguez 15/feb/2020
+	// Dianelys Saldana 20/feb/2020
 	void drawCircleByCenter(Graphics g, double x, double y) {
 		Graphics2D g2 = (Graphics2D) g;
 		g2.draw(new Ellipse2D.Double(x, y, 5, 5));
@@ -147,7 +151,8 @@ public class UserInterface extends JFrame {
 	 * 
 	 * @throws IOException
 	 */
-	//Carlos Rodriguez 20/feb/2020
+	
+	// Carlos Rodriguez 20/feb/2020
 	public UserInterface() throws IOException {
 		x.add(525.0);
 		y.add(300.0);
@@ -179,7 +184,7 @@ public class UserInterface extends JFrame {
 		angleButton.setBounds(135, 290, 55, 35);
 		contentPane.add(angleButton);
 
-		//Carlos Rodriguez 20/feb/2020
+		//Carlos Rodriguez, Dianelys Saldana 20/feb/2020
 		JButton btnGraph = new JButton("Graph");
 		btnGraph.setBounds(75, 220, 75, 35);
 		contentPane.add(btnGraph);
@@ -218,7 +223,7 @@ public class UserInterface extends JFrame {
 			}
 		});
 		
-		//Carlos Rodriguez and Jose A Velazquez 20/feb/2020
+		//Carlos Rodriguez, Dianelys Saldana, Jose A Velazquez 20/feb/2020
 		JButton btnGraphPolar = new JButton("Graph");
 		btnGraphPolar.setBounds(75, 335, 75, 35);
 		contentPane.add(btnGraphPolar);
@@ -253,7 +258,8 @@ public class UserInterface extends JFrame {
 				repaint();
 			}
 		});
-		////Carlos Rodriguez 15/feb/2020
+		// Carlos Rodriguez 15/feb/2020
+		// Dianelys Saldana 18/feb/2020
 		btnReset = new JButton("Reset");
 		btnReset.setBounds(50, 465, 130, 35);
 		contentPane.add(btnReset);
@@ -266,7 +272,7 @@ public class UserInterface extends JFrame {
 				repaint();
 			}
 		});
-		//Carlos Rodriguez 15/feb/2020
+		// Carlos Rodriguez 15/feb/2020
 		btnReturnToOrigin = new JButton("Return to origin");
 		btnReturnToOrigin.setBounds(50, 510, 130, 35);
 		contentPane.add(btnReturnToOrigin);
@@ -279,7 +285,7 @@ public class UserInterface extends JFrame {
 				repaint();
 			}
 		});
-		//Carlos Rodriguez 20/feb/2020
+		// Carlos Rodriguez 20/feb/2020
 		JButton btnClearCoordinates = new JButton("Clear Coordinates");
 		btnClearCoordinates.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -293,7 +299,7 @@ public class UserInterface extends JFrame {
 		contentPane.add(btnClearCoordinates);
 
 		// Radio Buttons
-		//Carlos Rodriguez and Jose A Velazquez 17/feb/2020
+		// Carlos Rodriguez, Jose A Velazquez 17/feb/2020
 		JRadioButton polarPlane = new JRadioButton("Polar Plane");
 		polarPlane.setBounds(30, 85, 160, 35);
 		contentPane.add(polarPlane);
@@ -312,7 +318,7 @@ public class UserInterface extends JFrame {
 			img = ImageIO.read(this.getClass().getResource("/Polar.png"));
 			repaint();
 		}
-		//Carlos Rodriguez and Jose A Velazquez 17/feb/2020
+		// Carlos Rodriguez, Jose A Velazquez 17/feb/2020
 		JRadioButton cartesianPlane = new JRadioButton("Cartesian Plane");
 		cartesianPlane.setBounds(30, 45, 160, 35);
 		contentPane.add(cartesianPlane);
